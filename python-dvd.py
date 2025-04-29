@@ -3,8 +3,11 @@ import pygame
 
 exit = False
 
+#pygme initializations
+pygame.init()
+
 # Settings
-SIZE = width, height = 800, 600  # Resolution. (4:3)!
+SIZE = width, height = 1280, 960  # Resolution. (4:3)!
 BG_COLOR = (0, 0, 0)  # Background color in RGB
 fullscreen = False  # Fullscreen
 
@@ -17,16 +20,16 @@ screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption('DVD Corner')
 
 # initialize cheer sound
-pygame.mixer.init()
+
 cheer = pygame.mixer.Sound("sounds/cheer.mp3")
 
 #initialize flash
-flash_duration = 2000
+flash_duration = 4000
 flash_start = 0
 flash_color = BG_COLOR
 
 #initializing text
-font = pygame.font.SysFont("Ubuntu", 30)
+font = pygame.font.SysFont("Ubuntu", 36)
 score = 0
 text = "Hits: " + str(score)
 text_x = screen.get_width() // 2
@@ -40,8 +43,8 @@ if fullscreen:
 #configuring speed and beginning position
 x = randint(50, width-60)
 y = randint(50, height-60)
-x_speed = 2.5
-y_speed = 2.5
+x_speed = 4
+y_speed = 4
 
 
 
@@ -72,6 +75,7 @@ while exit == False:
     if corner_now and not corner_prev:
         cheer.play()
         score += 1
+        text = "Hits: " + str(score)
         flash_start = pygame.time.get_ticks()
         flash_color = (randint(0, 255), randint(0, 255), randint(0, 255))
 
